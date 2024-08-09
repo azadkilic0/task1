@@ -1,16 +1,18 @@
-import java.util.Scanner;
-
 public class MergeSort {
     public static void main(String[] args) {
-        Scanner scanner = new Scanner(System.in);
+        if (args.length == 0) {
+            System.out.println("Please provide the elements of the array as command-line arguments.");
+            return;
+        }
 
-        System.out.println("Enter the elements of the array:");
-        String input = scanner.nextLine();
-        String[] inputArray = input.split(" ");
-        int[] array = new int[inputArray.length];
-
-        for (int i = 0; i < inputArray.length; i++) {
-            array[i] = Integer.parseInt(inputArray[i]);
+        int[] array = new int[args.length];
+        try {
+            for (int i = 0; i < args.length; i++) {
+                array[i] = Integer.parseInt(args[i]);
+            }
+        } catch (NumberFormatException e) {
+            System.out.println("Error: All input values must be integers.");
+            return;
         }
 
         mergeSort(array, 0, array.length - 1);
